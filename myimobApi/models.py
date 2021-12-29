@@ -1,3 +1,23 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+from django.utils.timezone import now
 
-# Create your models here.
+class Illustration(models.Model):
+    pass
+
+class Category(models.Model):
+    pass
+class House(models.Model):
+    
+    label = models.CharField(_("Libelle"), max_length=200)
+    category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.CASCADE)
+    create_date =  models.DateTimeField(_("Created Date"), auto_now_add=True)
+    update_date = models.DateTimeField(_("Updated Date"), auto_now=True)
+    
+    class Meta:
+        ordering = ["create_date"]
+        
+    def __str__(self):
+        return self.label
+    
+    
