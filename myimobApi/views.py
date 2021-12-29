@@ -1,5 +1,11 @@
-from django.shortcuts import render
-from django.http import JsonResponse
+from rest_framework import decorators,  response, views
 
-def index(request):
-    return JsonResponse("Bien Configuré.", safe=False)
+# def apiOverview(request):
+#     api_urls = {
+        
+#     }
+
+@decorators.api_view(["GET"])
+def get_all(request):
+    ctx = {"message":"First API View."}
+    return response.Response(data=ctx)
